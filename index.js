@@ -19,9 +19,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 // Routing
-app.get('/', (req, res) => {
-    res.render('index')
-})
+const PostRouter = require('./routes/post')
+app.use('/artigos', PostRouter)
 
 const userModel = require('./models/user')
 const createInitialUser = async () => {

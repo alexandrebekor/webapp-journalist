@@ -1,0 +1,10 @@
+<h1>Novo artigo</h1>
+<form method="post">
+    <input type="text" name="title" id="title" placeholder="Insira o título">
+    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    <select name="status" id="status">
+        <% status.forEach( item => { %>
+            <option value="<%= item %>"><%= item %></option>
+        <% }) %>
+    </select>
+</form>
