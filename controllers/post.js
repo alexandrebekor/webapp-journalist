@@ -9,6 +9,11 @@ const index = async (req, res) => {
     res.render('post/index')
 }
 
+const show = async (req, res) => {
+    const posts = await Post.find({ status: 'Publicado' })
+    res.render('post/list', { posts })
+}
+
 const create = async (req, res) => {
     res.render('post/create', { status })
 }
@@ -16,7 +21,7 @@ const create = async (req, res) => {
 const store = async (req, res) => {
     const post = Post(req.body)
     try {
-        post.save()
+        await post.save()
         res.render('post/index')
     } catch (e) {
         res.send('Deu erro')
@@ -25,6 +30,7 @@ const store = async (req, res) => {
 
 module.exports = {
     index,
+    show,
     create,
     store
 }
