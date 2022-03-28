@@ -22,21 +22,14 @@ app.set('view engine', 'ejs')
 // Assets
 app.use(express.static('public'))
 
-app.use((req, res, next) => {
-    if('user' in req.session) {
-        res.locals.user = req.session.user
-    }
-    next()
-})
-
 // Routing
 const PageRouter = require('./routes/page')
 const PostRouter = require('./routes/post')
+const AuthRouter = require('./routes/auth')
 const AdminRouter = require('./routes/admin')
-const AdminController = require('./controllers/admin')
+app.use('/', AuthRouter)
 app.use('/', PageRouter)
 app.use('/artigos', PostRouter)
-app.use('/admin', AdminController.logged)
 app.use('/admin', AdminRouter)
 
 const userModel = require('./models/user')

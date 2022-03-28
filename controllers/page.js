@@ -3,7 +3,7 @@ const index = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    res.render('login', { message: null })
+    res.render('login')
 }
 
 module.exports = {

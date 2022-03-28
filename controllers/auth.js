@@ -15,20 +15,13 @@ const login = async (req, res) => {
     }
 }
 
-const logged = async (req, res, next) => {
-    if('user' in req.session) {
-        return next()
-    } else {
-        res.redirect('/entrar')
-    }
-}
-
-const index = async (req, res) => {
-    res.render('admin/index')
+const logout = async (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/')
+    })
 }
 
 module.exports = {
     login,
-    logged,
-    index
+    logout
 }

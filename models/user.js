@@ -26,22 +26,10 @@ UserSchema.pre('save', function(next) {
     })
 })
 
-// UserSchema.methods.checkPassword = function(password) {
-//     return new Promise((resolve, reject) => {
-//         bcrypt.compare(password, this.password, (error, isMatch) => {
-//             if(error) {
-//                 reject(error)
-//             } else {
-//                 resolve(isMatch)
-//             }
-//         })
-//     })
-// }
-
-UserSchema.methods.checkPassword = function(password) {
+UserSchema.methods.checkPassword = function (password) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(password, this.password, (err, check) => {
-            if(check) {
+            if (check) {
                 resolve(check)
             } else {
                 reject(err)
